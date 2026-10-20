@@ -30,3 +30,7 @@
 
 ### Q3
 ![Q3](screenshots/q3.png)
+
+Clicking "Click me" shows the alert:
+
+![Q3 alert](screenshots/q3-alert.png)
