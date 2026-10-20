@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Q2 - Retrieve and Display JSON Data</title>
+</head>
+<body>
+
+<h2>Q2 - Retrieve and Display JSON Data</h2>
+
+<p>(a) Title of the first book: <span id="firstTitle"></span></p>
+<p>(b) Author of the second book: <span id="secondAuthor"></span></p>
+<p>(c) Genres of both books:</p>
+<ul id="genreList"></ul>
+
+<p id="error"></p>
+
+<script>
+fetch("books.json")
+  .then(function(response) {
+    if (!response.ok) {
+      throw new Error("Request failed");
+    }
+    return response.json();
+  })
+  .then(function(data) {
+    const books = data.books;
+
+    document.getElementById("firstTitle").textContent = books[0].title;
+    document.getElementById("secondAuthor").textContent = books[1].author;
+
+    const genreList = document.getElementById("genreList");
+    for (let i = 0; i < books.length; i++) {
+      const li = document.createElement("li");
+      li.textContent = books[i].title + " — " + books[i].genres.join(", ");
+      genreList.appendChild(li);
+    }
+  })
+  .catch(function(error) {
+    document.getElementById("error").textContent = "Sorry, the book data could not be loaded. Please try again later.";
+  });
+</script>
+
+</body>
+</html>
